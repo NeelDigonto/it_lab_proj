@@ -16,9 +16,6 @@ download_links = {
 }
 pdf_root_dir= "./assets/papers/IJCNLP/pdf/"
 
-prepDir([pdf_root_dir])
-
-
 def getFilesToDownload():
         files_to_download = []
         for conference_page_link in (download_links[2017] + download_links[2019]):
@@ -37,8 +34,11 @@ def downloadFiles(files_to_download):
                         f.write(response.content)
 
 
-if __name__ == "__main__" :
+def crawl():
+        prepDir([pdf_root_dir])
         files_to_download = getFilesToDownload()
         downloadFiles(files_to_download)
 
 
+if __name__ == "__main__" :
+        crawl()
