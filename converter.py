@@ -13,6 +13,7 @@ from pdfminer.pdfparser import PDFParser
 pdf_directory = "./assets/papers/IJCNLP/pdf/"
 txt_directory = "./assets/papers/IJCNLP/txt/"
 xml_directory = "./assets/papers/IJCNLP/xml/"
+
     
 for _, pdf_file_name in enumerate(os.listdir(pdf_directory)):
     suffix = pdf_file_name[pdf_file_name.index("doc") + 3:pdf_file_name.index(".pdf")]
