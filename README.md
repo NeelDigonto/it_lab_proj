@@ -10,7 +10,7 @@ Then install the following packages:
 
 ```bash
 pip install requests
-pip install BeautifulSoup
+pip install beautifulsoup4
 pip install pymupdf
 ```
 
