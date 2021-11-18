@@ -1,4 +1,5 @@
 import os
+import time
 from util import prepDir
 import fitz
 
@@ -30,7 +31,15 @@ def convertPapers() -> None:
     
 def convert():
     prepDir([txt_directory, xml_directory])
+    start_time = time.time()
+
+    print("Converting the downloaded Reseach Papers....")
+
     convertPapers()
+
+    end_time = time.time()
+    print(f"Papers Converted in {end_time - start_time} seconds\n")
+
 
 if __name__ == "__main__" :
         convert()
