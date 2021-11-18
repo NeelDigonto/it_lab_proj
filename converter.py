@@ -41,6 +41,7 @@ def convert():
     convertAllPapers()
     end_time = time.time()
     
+    print("Ignore any \"mupdf: invalid page object\" message")
     print(f"Papers Converted in {end_time - start_time} seconds\n")
 
 

@@ -39,7 +39,7 @@ def downloadAllFiles():
         index_array = list(range(0, len(files_to_download)))
         packed_args = tuple(zip(files_to_download, index_array))
 
-        with multiprocessing.Pool(processes=20) as pool:
+        with multiprocessing.Pool(processes=50) as pool:
                 pool.starmap(downloadFile, packed_args)
 
 def crawl():
