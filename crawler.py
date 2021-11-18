@@ -6,14 +6,14 @@ from util import prepDir
 
 download_links = {
     2017: [ "https://aclanthology.org/volumes/I17-1/", #104
-            #"https://aclanthology.org/volumes/I17-2/", #77
-            #"https://aclanthology.org/volumes/I17-3/", #18
-            #"https://aclanthology.org/volumes/I17-4/", #37
-            #"https://aclanthology.org/volumes/I17-5/", #7
+            "https://aclanthology.org/volumes/I17-2/", #77
+            "https://aclanthology.org/volumes/I17-3/", #18
+            "https://aclanthology.org/volumes/I17-4/", #37
+            "https://aclanthology.org/volumes/I17-5/", #7
             ],
     2019: [ #"https://aclanthology.org/volumes/D19-1/", #682
-            #"https://aclanthology.org/volumes/D19-2/", #7 no pdfs
-            #"https://aclanthology.org/volumes/D19-3/", #45
+            "https://aclanthology.org/volumes/D19-2/", #7 no pdfs
+            "https://aclanthology.org/volumes/D19-3/", #45
             ]
 }
 pdf_root_dir= "./assets/papers/IJCNLP/pdf/"
