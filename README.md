@@ -11,7 +11,7 @@ Then install the following packages:
 ```bash
 pip install requests
 pip install BeautifulSoup
-pip install fitz
+pip install pymupdf
 ```
 
 then run main.py by invoking the following command
