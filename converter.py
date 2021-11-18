@@ -1,16 +1,6 @@
-from io import StringIO
 import os
 from util import prepDir
-
-import PyPDF2
 import fitz
-
-from pdfminer.converter import TextConverter, XMLConverter, HTMLConverter
-from pdfminer.layout import LAParams
-from pdfminer.pdfdocument import PDFDocument
-from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-from pdfminer.pdfpage import PDFPage
-from pdfminer.pdfparser import PDFParser
 
 pdf_directory = "./assets/papers/IJCNLP/pdf/"
 txt_directory = "./assets/papers/IJCNLP/txt/"
@@ -36,8 +26,6 @@ def convertPapers() -> None:
                         xml += page.get_text("xml")
 
                     xml_output_file.write(xml)
-
-
 
     
 def convert():
