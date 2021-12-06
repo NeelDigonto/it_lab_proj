@@ -14,10 +14,17 @@ pip install beautifulsoup4
 pip install pymupdf
 ```
 
-then run main.py by invoking the following command
+Then run main.py by invoking the following command
 
 ```bash
 python main.py
+```
+
+To run the crawler and converter scripts seperately run the following commands in succession.
+
+```bash
+python crawler.py
+python converter.py
 ```
 
 Check the folder for the generated files
