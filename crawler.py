@@ -3,18 +3,20 @@ from bs4 import BeautifulSoup
 import multiprocessing
 import time
 from util import prepDir
+from util import _FILE_PREFIX_
+from util import _FILE_PREFIX_LEN_
 
 download_links = {
-    2017: [  # "https://aclanthology.org/volumes/I17-1/", #104
-        "https://aclanthology.org/volumes/I17-2/",  # 77
-        "https://aclanthology.org/volumes/I17-3/",  # 18
-        "https://aclanthology.org/volumes/I17-4/",  # 37
-        "https://aclanthology.org/volumes/I17-5/",  # 7
-    ],
-    2019: [  # "https://aclanthology.org/volumes/D19-1/", #682
-        "https://aclanthology.org/volumes/D19-2/",  # 7 no pdfs
-        "https://aclanthology.org/volumes/D19-3/",  # 45
-    ]
+    2017: ["https://aclanthology.org/volumes/I17-1/",  # 104
+           "https://aclanthology.org/volumes/I17-2/",  # 77
+           "https://aclanthology.org/volumes/I17-3/",  # 18
+           "https://aclanthology.org/volumes/I17-4/",  # 37
+           "https://aclanthology.org/volumes/I17-5/",  # 7
+           ],
+    2019: ["https://aclanthology.org/volumes/D19-1/",  # 682
+           "https://aclanthology.org/volumes/D19-2/",  # 7 no pdfs
+           "https://aclanthology.org/volumes/D19-3/",  # 45
+           ]
 }
 pdf_root_dir = "./assets/papers/IJCNLP/pdf/"
 
@@ -33,7 +35,7 @@ def getFilesToDownload():
 
 def downloadFile(pub_pdf_link, suffix):
     response = requests.get(pub_pdf_link)
-    with open(f"{pdf_root_dir}doc{suffix}.pdf", 'wb') as f:
+    with open(f"{pdf_root_dir}{_FILE_PREFIX_}{suffix}.pdf", 'wb') as f:
         f.write(response.content)
 
 

@@ -1,11 +1,11 @@
 import os
 import time
 from util import prepDir
+from util import _FILE_PREFIX_
+from util import _FILE_PREFIX_LEN_
 
 src_txt_directory = "./assets/papers/IJCNLP/txt/"
 final_txt_out_directory = "./assets/final_out/"
-_FILE_PREFIX_ = "doc"
-_FILE_PREFIX_LEN_ = len(_FILE_PREFIX_)
 
 
 def lintSummary(summary: str) -> str:

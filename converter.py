@@ -3,6 +3,8 @@ import time
 import multiprocessing
 from util import prepDir
 import fitz
+from util import _FILE_PREFIX_
+from util import _FILE_PREFIX_LEN_
 
 pdf_directory = "./assets/papers/IJCNLP/pdf/"
 txt_directory = "./assets/papers/IJCNLP/txt/"
@@ -13,12 +15,12 @@ _PAR_COUNT_ = multiprocessing.cpu_count() * 2
 
 def convertPaper(pdf_file_name) -> None:
     suffix = pdf_file_name[pdf_file_name.index(
-        "doc") + 3:pdf_file_name.index(".pdf")]
-    pdf_file_path = os.path.join(pdf_directory, f"doc{suffix}.pdf")
+        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_:pdf_file_name.index(".pdf")]
+    pdf_file_path = os.path.join(pdf_directory, f"{_FILE_PREFIX_}{suffix}.pdf")
 
     if os.path.isfile(pdf_file_path):
         with fitz.Document(pdf_file_path) as pdf_file:
-            with open(os.path.join(txt_directory, f"doc{suffix}.txt"), "w", encoding="utf-8") as txt_output_file:
+            with open(os.path.join(txt_directory, f"{_FILE_PREFIX_}{suffix}.txt"), "w", encoding="utf-8") as txt_output_file:
                 text: str = ""
                 for page in pdf_file:
                     text += page.get_text("text")
@@ -30,7 +32,7 @@ def convertPaper(pdf_file_name) -> None:
                     text += line + ".\n"
                 txt_output_file.write(text)
 
-            with open(os.path.join(xml_directory, f"doc{suffix}.xml"), "w", encoding="utf-8") as xml_output_file:
+            with open(os.path.join(xml_directory, f"{_FILE_PREFIX_}{suffix}.xml"), "w", encoding="utf-8") as xml_output_file:
                 xml = ""
                 for page in pdf_file:
                     xml += page.get_text("xml")
