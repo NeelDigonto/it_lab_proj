@@ -18,7 +18,6 @@ def lintSummary(summary: str) -> str:
             summary = f"{summary[1:]}"
 
     summary = summary.replace("\n", "\n\t\t")
-    test = summary
     return summary
 
 
@@ -31,9 +30,12 @@ def getSummary(_lines: list[str], _table_no, _paper_no) -> str:
 
     for line in _lines:
         search_str: str = f"Table {_table_no}"
+        search_str_len = len(search_str)
         index = line.find(search_str)
         if index != -1:
             isTablePresent = True
+            if(search_str_len + index + 1 > len(line)):
+                continue
             next_char = line[index + len(search_str)]
             if next_char == ":":
                 abstractive_summary += line
