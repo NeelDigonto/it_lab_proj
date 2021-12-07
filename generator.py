@@ -82,10 +82,10 @@ def parseAllFiles() -> None:
     # with multiprocessing.Pool(processes=_PAR_COUNT_) as pool:
     #   pool.map(parseFile, files_to_parse)
 
-    # for file in files_to_parse:
-    #   output_text_buffer += parseFile(file)
+    for file in files_to_parse:
+        output_text_buffer += parseFile(file)
 
-    output_text_buffer += parseFile("doc7.txt")
+    #output_text_buffer += parseFile("doc7.txt")
 
     with open(final_txt_out_directory + "output.txt", "w", encoding="utf-8") as final_txt_out_file:
         final_txt_out_file.write(output_text_buffer)
