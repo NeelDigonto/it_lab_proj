@@ -1,6 +1,5 @@
 import os
 import time
-from functools import cmp_to_key
 from util import prepDir
 
 src_txt_directory = "./assets/papers/IJCNLP/txt/"
@@ -78,18 +77,17 @@ def parseFile(txt_file_name) -> str:
     return output_text_buffer
 
 
-def compare(item1: str, item2: str) -> int:
-    suffix1 = int(item1[item1.index(
-        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_:item1.index(".txt")])
-    suffix2 = int(item2[item2.index(
-        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_:item2.index(".txt")])
-    return (suffix1 - suffix2)
+def compare(item: str) -> int:
+    suffix1 = int(item[item.index(
+        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_:item.index(".txt")])
+
+    return suffix1
 
 
 def parseAllFiles() -> None:
     files_to_parse: list[str] = os.listdir(src_txt_directory)
     files_to_parse: list[str] = sorted(
-        files_to_parse, key=cmp_to_key(compare))
+        files_to_parse, key=compare)
     output_text_buffer: str = ""
 
     for file in files_to_parse:

@@ -19,9 +19,15 @@ def convertPaper(pdf_file_name) -> None:
     if os.path.isfile(pdf_file_path):
         with fitz.Document(pdf_file_path) as pdf_file:
             with open(os.path.join(txt_directory, f"doc{suffix}.txt"), "w", encoding="utf-8") as txt_output_file:
-                text = ""
+                text: str = ""
                 for page in pdf_file:
                     text += page.get_text("text")
+                lines = text.split('.')
+                text = ""
+                for line in lines:
+                    line = line.strip()
+                    line = line.replace("\n", ' ')
+                    text += line + ".\n"
                 txt_output_file.write(text)
 
             with open(os.path.join(xml_directory, f"doc{suffix}.xml"), "w", encoding="utf-8") as xml_output_file:
