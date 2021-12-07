@@ -3,7 +3,6 @@ import os
 import time
 import multiprocessing
 from util import prepDir
-import fitz
 
 src_txt_directory = "./assets/papers/IJCNLP/txt/"
 final_txt_out_directory = "./assets/final_out/"
@@ -32,13 +31,10 @@ def getSummary(_lines: list[str], _table_no, _paper_no) -> str:
 
     for line in _lines:
         search_str: str = f"Table {_table_no}"
-        search_str_len: int = len(search_str)
         index = line.find(search_str)
         if index != -1:
             isTablePresent = True
-            if(len(line) < index + search_str_len + 1):
-                continue
-            next_char = line[index + search_str_len]
+            next_char = line[index + len(search_str)]
             if next_char == ":":
                 abstractive_summary += line
             else:
@@ -86,12 +82,12 @@ def parseAllFiles() -> None:
     # with multiprocessing.Pool(processes=_PAR_COUNT_) as pool:
     #   pool.map(parseFile, files_to_parse)
 
-    for file in files_to_parse:
-        output_text_buffer += parseFile(file)
+    # for file in files_to_parse:
+    #   output_text_buffer += parseFile(file)
 
-    #output_text_buffer += parseFile("doc7.txt")
+    output_text_buffer += parseFile("doc7.txt")
 
-    with open(final_txt_out_directory+"output.txt", "w", encoding="utf-8") as final_txt_out_file:
+    with open(final_txt_out_directory + "output.txt", "w", encoding="utf-8") as final_txt_out_file:
         final_txt_out_file.write(output_text_buffer)
 
 
