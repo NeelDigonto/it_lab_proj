@@ -1,13 +1,10 @@
-from io import TextIOWrapper
 import os
 import time
-import multiprocessing
+from functools import cmp_to_key
 from util import prepDir
 
 src_txt_directory = "./assets/papers/IJCNLP/txt/"
 final_txt_out_directory = "./assets/final_out/"
-
-_PAR_COUNT_ = multiprocessing.cpu_count() * 2
 
 
 def lintSummary(summary: str) -> str:
@@ -78,11 +75,19 @@ def parseFile(txt_file_name) -> str:
     return output_text_buffer
 
 
+def compare(item1: str, item2: str) -> int:
+    suffix1 = int(item1[item1.index(
+        "doc") + 3:item1.index(".txt")])
+    suffix2 = int(item2[item2.index(
+        "doc") + 3:item2.index(".txt")])
+    return (suffix1 - suffix2)
+
+
 def parseAllFiles() -> None:
     files_to_parse: list[str] = os.listdir(src_txt_directory)
+    files_to_parse: list[str] = sorted(
+        files_to_parse, key=cmp_to_key(compare))
     output_text_buffer: str = ""
-    # with multiprocessing.Pool(processes=_PAR_COUNT_) as pool:
-    #   pool.map(parseFile, files_to_parse)
 
     for file in files_to_parse:
         output_text_buffer += parseFile(file)
