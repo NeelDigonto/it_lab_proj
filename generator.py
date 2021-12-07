@@ -6,6 +6,7 @@ from util import prepDir
 src_txt_directory = "./assets/papers/IJCNLP/txt/"
 final_txt_out_directory = "./assets/final_out/"
 _FILE_PREFIX_ = "doc"
+_FILE_PREFIX_LEN_ = len(_FILE_PREFIX_)
 
 
 def lintSummary(summary: str) -> str:
@@ -53,7 +54,7 @@ def getSummary(_lines: list[str], _table_no, _paper_no) -> str:
 
 def parseFile(txt_file_name) -> str:
     suffix = txt_file_name[txt_file_name.index(
-        f"{_FILE_PREFIX_}") + 3: txt_file_name.index(".txt")]
+        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_: txt_file_name.index(".txt")]
     src_txt_file_path = os.path.join(
         src_txt_directory, f"{_FILE_PREFIX_}{suffix}.txt")
     output_text_buffer: str = ""
@@ -79,9 +80,9 @@ def parseFile(txt_file_name) -> str:
 
 def compare(item1: str, item2: str) -> int:
     suffix1 = int(item1[item1.index(
-        f"{_FILE_PREFIX_}") + 3:item1.index(".txt")])
+        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_:item1.index(".txt")])
     suffix2 = int(item2[item2.index(
-        f"{_FILE_PREFIX_}") + 3:item2.index(".txt")])
+        f"{_FILE_PREFIX_}") + _FILE_PREFIX_LEN_:item2.index(".txt")])
     return (suffix1 - suffix2)
 
 
